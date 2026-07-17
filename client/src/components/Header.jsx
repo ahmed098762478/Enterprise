@@ -1,64 +1,41 @@
 import logo from '../assets/futurama-logo.svg'
 
-const navItems = ['Pricing', 'Services', 'Explore', 'Support', 'Horizons']
-
 function Header({ theme, onToggleTheme }) {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/5 bg-black/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-3 sm:px-8 lg:px-10">
-        <div className="flex items-center gap-3">
-          <img
-            src={logo}
-            alt="FUTURAMA"
-            className="h-12 w-12 object-contain sm:h-14 sm:w-14"
-          />
+    <header className="sticky top-0 z-40 px-4 py-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex max-w-[1440px] items-center justify-between rounded-full border border-white/10 bg-black/55 px-5 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-2xl sm:px-7">
+        <a href="#home" className="flex items-center gap-3">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10">
+            <img src={logo} alt="Futurama logo" className="h-7 w-7" />
+          </span>
+          <span>
+            <span className="block text-sm font-bold uppercase tracking-[0.28em] text-white">Futurama</span>
+            <span className="block text-xs text-zinc-400">Digital Product Studio</span>
+          </span>
+        </a>
 
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-white">
-              FUTURAMA
-            </p>
-            <p className="text-[11px] text-zinc-500">
-              Tech & innovation
-            </p>
-          </div>
-        </div>
-
-        <nav className="hidden items-center gap-7 text-xs font-medium text-zinc-300 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="transition-colors duration-200 hover:text-white"
-            >
-              {item}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-8 text-sm font-medium text-zinc-300 lg:flex">
+          <a href="#services" className="transition hover:text-white">Services</a>
+          <a href="#process" className="transition hover:text-white">Process</a>
+          <a href="#contact" className="transition hover:text-white">Contact</a>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="rounded-md border border-white/10 bg-zinc-950 px-3 py-2 text-xs text-zinc-200 transition hover:border-white/25 hover:bg-zinc-900"
-          >
-            English
-          </button>
-
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onToggleTheme}
-            className="rounded-md border border-white/10 bg-zinc-950 px-3 py-2 text-xs font-medium text-zinc-200 transition hover:border-violet-400/40 hover:bg-zinc-900"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
           >
             {theme === 'dark' ? 'Light' : 'Dark'}
           </button>
-
           <a
             href="#contact"
-            className="rounded-md border border-white/30 bg-black px-4 py-2 text-xs font-semibold text-white transition hover:border-white hover:bg-zinc-900"
+            className="hidden rounded-full bg-violet-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-950/40 transition hover:bg-violet-400 sm:inline-flex"
           >
-            Log in
+            Start a project
           </a>
         </div>
-      </div>
+      </nav>
     </header>
   )
 }

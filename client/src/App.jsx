@@ -25,10 +25,10 @@ function App() {
   }, [theme])
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-950 transition-colors duration-500 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen overflow-x-hidden bg-[#050509] text-zinc-100 transition-colors duration-500">
       <Header theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
-      <main className="mx-auto max-w-7xl px-6 py-10 sm:px-8 lg:px-10">
-        <Hero />
+      <Hero />
+      <main className="px-6 py-10 sm:px-8 lg:px-10">
         <Services />
         <ContactBanner />
       </main>
