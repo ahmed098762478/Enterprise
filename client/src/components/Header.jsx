@@ -1,41 +1,78 @@
-import logo from '../assets/futurama-logo.svg'
+import { useEffect, useRef, useState } from 'react'
+import lightLogo from '../assets/clairLogo.jpg'
+import darkLogo from '../assets/darkLogo.jpg'
+
+const links = [
+  { href: '#services', label: 'Services' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#process', label: 'Méthode' },
+  { href: '#contact', label: 'Contact' },
+]
 
 function Header({ theme, onToggleTheme }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuButton = useRef(null)
+  const navigation = useRef(null)
+  const dark = theme === 'dark'
+
+  useEffect(() => {
+    if (menuOpen) navigation.current.querySelector('a').focus()
+  }, [menuOpen])
+
+  function handleKeyDown(event) {
+    if (event.key === 'Escape' && menuOpen) {
+      setMenuOpen(false)
+      menuButton.current.focus()
+    }
+  }
+
+  function followLink(event) {
+    setMenuOpen(false)
+    if (menuOpen && menuButton.current.getClientRects().length > 0) {
+      document.querySelector(event.currentTarget.hash)?.focus({ preventScroll: true })
+    }
+  }
+
   return (
-    <header className="sticky top-0 z-40 px-4 py-4 sm:px-6 lg:px-8">
-      <nav className="mx-auto flex max-w-[1440px] items-center justify-between rounded-full border border-white/10 bg-black/55 px-5 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-2xl sm:px-7">
-        <a href="#home" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-violet-400/30 bg-violet-500/10">
-            <img src={logo} alt="Futurama logo" className="h-7 w-7" />
-          </span>
-          <span>
-            <span className="block text-sm font-bold uppercase tracking-[0.28em] text-white">Futurama</span>
-            <span className="block text-xs text-zinc-400">Digital Product Studio</span>
-          </span>
+    <header className="site-header" onKeyDown={handleKeyDown}>
+      <div className="header-inner">
+        <a className="brand" href="#home" aria-label="Novary — Accueil" onClick={followLink}>
+          <img src={dark ? darkLogo : lightLogo} alt="Novary" width="1600" height="517" />
         </a>
-
-        <nav className="hidden items-center gap-8 text-sm font-medium text-zinc-300 lg:flex">
-          <a href="#services" className="transition hover:text-white">Services</a>
-          <a href="#process" className="transition hover:text-white">Process</a>
-          <a href="#contact" className="transition hover:text-white">Contact</a>
+        <nav
+          id="site-navigation"
+          className="site-nav"
+          aria-label="Navigation principale"
+          data-open={menuOpen}
+          ref={navigation}
+        >
+          {links.map(({ href, label }) => (
+            <a key={href} href={href} onClick={followLink}>{label}</a>
+          ))}
         </nav>
-
-        <div className="flex items-center gap-3">
+        <div className="header-actions">
           <button
             type="button"
+            className="theme-button"
             onClick={onToggleTheme}
-            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
+            aria-pressed={dark}
+            aria-label="Mode sombre"
           >
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            <span className={dark ? 'theme-icon theme-moon' : 'theme-icon theme-sun'} aria-hidden="true" />
+            <span>{dark ? 'Sombre' : 'Clair'}</span>
           </button>
-          <a
-            href="#contact"
-            className="hidden rounded-full bg-violet-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-950/40 transition hover:bg-violet-400 sm:inline-flex"
+          <button
+            type="button"
+            className="menu-button"
+            ref={menuButton}
+            aria-controls="site-navigation"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            Start a project
-          </a>
+            {menuOpen ? 'Fermer' : 'Menu'}
+          </button>
         </div>
-      </nav>
+      </div>
     </header>
   )
 }

@@ -1,108 +1,106 @@
 const services = [
   {
-    title: 'Web platforms',
-    description: 'SaaS products, business dashboards, e-commerce systems, admin portals, and custom workflows.',
-    scope: ['Product UX', 'Frontend', 'Backend APIs'],
+    title: 'Plateformes web',
+    description: 'Produits SaaS, tableaux de bord, boutiques en ligne et portails d’administration.',
+    scope: ['Design produit', 'Frontend', 'API'],
   },
   {
-    title: 'Mobile applications',
-    description: 'Customer and internal mobile apps designed around performance, clean journeys, and long-term maintainability.',
-    scope: ['iOS and Android', 'Cross-platform', 'API integration'],
+    title: 'Applications mobiles',
+    description: 'Applications pour vos clients et vos équipes, conçues pour durer.',
+    scope: ['iOS', 'Android', 'Multiplateforme'],
   },
   {
-    title: 'AI automation',
-    description: 'AI assistants, document workflows, data extraction, and operational automation connected to business tools.',
-    scope: ['NLP', 'Automation', 'Decision support'],
+    title: 'Automatisation et IA',
+    description: 'Assistants, traitement de documents et automatisation connectés à vos outils métier.',
+    scope: ['Assistants', 'Extraction de données'],
   },
   {
-    title: 'Blockchain systems',
-    description: 'Decentralized applications, smart contract concepts, token flows, and secure Web3 interfaces.',
-    scope: ['DApps', 'Wallet flows', 'Smart contracts'],
+    title: 'Applications métier, ERP et CRM',
+    description: 'Des outils pour gérer vos opérations, suivre vos ventes et centraliser la relation client.',
+    scope: ['ERP', 'CRM', 'Intégration'],
   },
   {
-    title: 'Data analytics',
-    description: 'Reporting interfaces, KPI dashboards, data pipelines, and insight layers for leadership decisions.',
-    scope: ['BI dashboards', 'Data models', 'Reporting'],
+    title: 'Analyse de données',
+    description: 'Indicateurs, rapports et tableaux de bord pour suivre votre activité et éclairer vos décisions.',
+    scope: ['Tableaux de bord', 'Reporting'],
   },
   {
-    title: 'Cloud architecture',
-    description: 'Deployment-ready architecture, infrastructure planning, DevOps foundations, and scalable environments.',
-    scope: ['Cloud setup', 'DevOps', 'Security'],
+    title: 'Architecture cloud',
+    description: 'Infrastructure, déploiement et organisation des environnements pour accompagner votre croissance.',
+    scope: ['Cloud', 'DevOps', 'Sécurité'],
   },
 ]
 
 const processSteps = [
-  { step: '01', title: 'Clarify', text: 'Map the business goal, users, constraints, and success metrics.' },
-  { step: '02', title: 'Design', text: 'Shape the product structure, interfaces, data model, and delivery plan.' },
-  { step: '03', title: 'Build', text: 'Develop reliable features with clean code, validation, and regular demos.' },
-  { step: '04', title: 'Launch', text: 'Prepare handoff, deployment, monitoring habits, and iteration roadmap.' },
+  { title: 'Cadrer', description: 'Définir le besoin, les utilisateurs, les contraintes et les critères de réussite.' },
+  { title: 'Concevoir', description: 'Dessiner les parcours, structurer les données et établir le plan de réalisation.' },
+  { title: 'Développer', description: 'Construire les fonctionnalités, les tester et vous les présenter au fil des itérations.' },
+  { title: 'Lancer', description: 'Préparer le déploiement, la prise en main et le suivi après le lancement.' },
 ]
 
-function Services() {
+export function Services() {
   return (
-    <>
-      <section id="services" className="py-24">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="mb-12 grid gap-6 lg:grid-cols-[0.85fr_1fr] lg:items-end">
+    <section id="services" className="page-section services-section" aria-labelledby="services-title" tabIndex={-1}>
+      <div className="section-inner">
+        <div className="reveal">
+          <div className="reveal-content section-heading split-heading">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">Services</p>
-              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                Business solutions built like products.
-              </h2>
+              <p className="section-label">Services</p>
+              <h2 id="services-title">Du besoin métier au produit.</h2>
             </div>
-            <p className="max-w-2xl text-base leading-8 text-zinc-400 lg:justify-self-end">
-              Futurama helps companies move from idea to production with strategy, design, engineering, and scalable technology choices in one focused delivery path.
-            </p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {services.map((service, index) => (
-              <article
-                key={service.title}
-                className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-[0_28px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-violet-300/35 hover:bg-white/[0.055]"
-              >
-                <div className="absolute right-0 top-0 h-28 w-28 bg-violet-500/10 blur-2xl transition group-hover:bg-violet-400/20" />
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-300/20 bg-violet-500/10 text-sm font-bold text-violet-200">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                <h3 className="text-xl font-semibold text-white">{service.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-400">{service.description}</p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {service.scope.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-xs text-zinc-300">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
+            <p>Stratégie, design et ingénierie réunis pour concevoir les outils dont vos équipes ont besoin.</p>
           </div>
         </div>
-      </section>
 
-      <section id="process" className="py-10 pb-24">
-        <div className="mx-auto max-w-[1440px] rounded-[2.5rem] border border-white/10 bg-black/35 p-6 shadow-[0_32px_100px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-8 lg:p-10">
-          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">Process</p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
-                A structured path from business need to launch.
-              </h2>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {processSteps.map((item) => (
-                <article key={item.step} className="rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-5">
-                  <p className="text-sm font-semibold text-violet-300">{item.step}</p>
-                  <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-400">{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+        <div className="card-grid service-grid">
+          {services.map(({ title, description, scope }, index) => (
+            <article key={title} className="reveal" tabIndex={0} aria-labelledby={`service-title-${index}`}>
+              <div className="reveal-content">
+                <div className="service-card">
+                  <div className="service-face service-front">
+                    <h3 id={`service-title-${index}`}>{title}</h3>
+                    <p>{description}</p>
+                  </div>
+                  <div className="service-face service-back">
+                    <p className="service-back-title" aria-hidden="true">{title}</p>
+                    <ul className="tag-list" aria-label="Expertises">
+                      {scope.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
 
-export default Services
+export function Method() {
+  return (
+    <section id="process" className="page-section method-section" aria-labelledby="process-title" tabIndex={-1}>
+      <div className="section-inner method-layout">
+        <div className="reveal">
+          <div className="reveal-content section-heading">
+            <p className="section-label">Méthode</p>
+            <h2 id="process-title">Quatre étapes, de l’idée au lancement.</h2>
+          </div>
+        </div>
+        <ol className="step-list">
+          {processSteps.map(({ title, description }, index) => (
+            <li key={title} className="reveal">
+              <div className="reveal-content step">
+                <span className="step-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
